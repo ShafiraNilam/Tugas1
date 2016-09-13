@@ -31,10 +31,12 @@ public class MainActivity extends AppCompatActivity
         cb5 = (CheckBox) findViewById(R.id.cb5);
         spinnerAsal = (Spinner) findViewById(R.id.spinnerAsal);
         buttonOk = (Button) findViewById(R.id.buttonOk);
+        tvHasil = (TextView) findViewById(R.id.textView);
 
         findViewById(R.id.buttonOk).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 doClick();
             }
         });
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void doClick() {
+        String Nama = etNama.getText().toString();
         String hasil = "Terima Kasih " + etNama.getText().toString() + " Telah memilih \n";
 
         int startlen = hasil.length();
@@ -53,6 +56,6 @@ public class MainActivity extends AppCompatActivity
         if (cb5.isChecked()) hasil += cb5.getText() + "\n";
         if (hasil.length() == startlen) hasil += "Tidak ada pilihan";
 
-        tvHasil.setText(hasil);
+        tvHasil.setText("" + hasil);
     }
 }
