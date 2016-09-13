@@ -73,7 +73,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignStart="@+id/textView4"
-        android:layout_below="@+id/textView4" />
+        android:layout_below="@+id/textView4"
+        android:inputType="numberSigned" />
 
     <TextView
         android:id="@+id/textView5"
@@ -170,6 +171,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView7"
+        android:entries="@array/Asal"
         android:spinnerMode="dropdown" />
 
     <Button
