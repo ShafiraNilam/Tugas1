@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity
     CheckBox cb1, cb2, cb3, cb4, cb5;
     TextView tvHasil;
     Spinner spinnerAsal;
+    RadioButton rb1, rb2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity
         cb3 = (CheckBox) findViewById(R.id.cb3);
         cb4 = (CheckBox) findViewById(R.id.cb4);
         cb5 = (CheckBox) findViewById(R.id.cb5);
+        rb1 = (RadioButton) findViewById(R.id.rb1);
+        rb2 = (RadioButton) findViewById(R.id.rb2);
         spinnerAsal = (Spinner) findViewById(R.id.spinnerAsal);
         buttonOk = (Button) findViewById(R.id.buttonOk);
         tvHasil = (TextView) findViewById(R.id.textView);
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private void doClick() {
         if (isValid()) {
             String Nama = etNama.getText().toString();
-            String hasil = "Terima Kasih " + etNama.getText().toString() + " Telah memilih \n";
+            String hasil = "Terima Kasih " + etNama.getText().toString() + "Berumur " + etUmur.getText().toString() + " Telah memilih \n";
 
             int startlen = hasil.length();
             if (cb1.isChecked()) hasil += cb1.getText() + "\n";
@@ -55,8 +59,9 @@ public class MainActivity extends AppCompatActivity
             if (cb3.isChecked()) hasil += cb3.getText() + "\n";
             if (cb4.isChecked()) hasil += cb4.getText() + "\n";
             if (cb5.isChecked()) hasil += cb5.getText() + "\n";
-            if (hasil.length() == startlen) hasil += "Tidak ada pilihan";
-
+            if (hasil.length() == startlen) hasil += "Tidak Memilih";
+            if (rb1.isChecked()) hasil += rb1.getText() + "\n";
+            if (rb1.isChecked()) hasil += rb1.getText() + "\n";
             tvHasil.setText("" + hasil);
         }
     }
@@ -66,6 +71,8 @@ public class MainActivity extends AppCompatActivity
 
         String nama = etNama.getText().toString();
         String tahun = etUmur.getText().toString();
+        String hasil = null;
+        String status = null;
 
         if (nama.isEmpty()) {
             etNama.setError("Nama harus diisi");
@@ -81,6 +88,25 @@ public class MainActivity extends AppCompatActivity
             valid = false;
         } else {
             etUmur.setError(null);
+        }
+        if (cb1.isChecked()) {
+            hasil = cb1.getText().toString();
+        } else if (cb2.isChecked()) {
+            hasil = cb2.getText().toString();
+        } else if (cb3.isChecked()) {
+            hasil = cb3.getText().toString();
+        } else if (cb4.isChecked()) {
+            hasil = cb4.getText().toString();
+        } else if (cb5.isChecked()) {
+            hasil = cb5.getText().toString();
+        }
+        if (hasil == null) {
+            tvHasil.setText("Belum memilih Ekstra");
+        }
+        if (status == null) {
+            tvHasil.setText("Belum memilih jenis kelamin");
+        } else {
+            tvHasil.setText(" " + hasil);
         }
         return valid;
     }
