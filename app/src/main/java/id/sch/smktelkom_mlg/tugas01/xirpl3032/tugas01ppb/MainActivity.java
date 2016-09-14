@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private void doClick() {
         if (isValid()) {
             String Nama = etNama.getText().toString();
-            String hasil = "Terima Kasih " + etNama.getText().toString() + "Berumur " + etUmur.getText().toString() + " Telah memilih \n";
+            String hasil = "Terima Kasih " + etNama.getText().toString() + " Berumur " + etUmur.getText().toString() + "\n";
 
             int startlen = hasil.length();
             if (cb1.isChecked()) hasil += cb1.getText() + "\n";
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity
             if (cb3.isChecked()) hasil += cb3.getText() + "\n";
             if (cb4.isChecked()) hasil += cb4.getText() + "\n";
             if (cb5.isChecked()) hasil += cb5.getText() + "\n";
-            if (hasil.length() == startlen) hasil += "Tidak Memilih";
             if (rb1.isChecked()) hasil += rb1.getText() + "\n";
             if (rb1.isChecked()) hasil += rb1.getText() + "\n";
             tvHasil.setText("" + hasil);
@@ -89,6 +88,9 @@ public class MainActivity extends AppCompatActivity
         } else {
             etUmur.setError(null);
         }
+        if (status == null) {
+            tvHasil.setText("Belum memilih jenis kelamin");
+        }
         if (cb1.isChecked()) {
             hasil = cb1.getText().toString();
         } else if (cb2.isChecked()) {
@@ -102,11 +104,6 @@ public class MainActivity extends AppCompatActivity
         }
         if (hasil == null) {
             tvHasil.setText("Belum memilih Ekstra");
-        }
-        if (status == null) {
-            tvHasil.setText("Belum memilih jenis kelamin");
-        } else {
-            tvHasil.setText(" " + hasil);
         }
         return valid;
     }
