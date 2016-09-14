@@ -45,17 +45,43 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void doClick() {
-        String Nama = etNama.getText().toString();
-        String hasil = "Terima Kasih " + etNama.getText().toString() + " Telah memilih \n";
+        if (isValid()) {
+            String Nama = etNama.getText().toString();
+            String hasil = "Terima Kasih " + etNama.getText().toString() + " Telah memilih \n";
 
-        int startlen = hasil.length();
-        if (cb1.isChecked()) hasil += cb1.getText() + "\n";
-        if (cb2.isChecked()) hasil += cb2.getText() + "\n";
-        if (cb3.isChecked()) hasil += cb3.getText() + "\n";
-        if (cb4.isChecked()) hasil += cb4.getText() + "\n";
-        if (cb5.isChecked()) hasil += cb5.getText() + "\n";
-        if (hasil.length() == startlen) hasil += "Tidak ada pilihan";
+            int startlen = hasil.length();
+            if (cb1.isChecked()) hasil += cb1.getText() + "\n";
+            if (cb2.isChecked()) hasil += cb2.getText() + "\n";
+            if (cb3.isChecked()) hasil += cb3.getText() + "\n";
+            if (cb4.isChecked()) hasil += cb4.getText() + "\n";
+            if (cb5.isChecked()) hasil += cb5.getText() + "\n";
+            if (hasil.length() == startlen) hasil += "Tidak ada pilihan";
 
-        tvHasil.setText("" + hasil);
+            tvHasil.setText("" + hasil);
+        }
+    }
+
+    private boolean isValid() {
+        boolean valid = true;
+
+        String nama = etNama.getText().toString();
+        String tahun = etUmur.getText().toString();
+
+        if (nama.isEmpty()) {
+            etNama.setError("Nama harus diisi");
+            valid = false;
+        } else if (nama.length() < 3) {
+            etNama.setError("Nama minimal 3 karakter");
+            valid = false;
+        } else {
+            etNama.setError(null);
+        }
+        if (tahun.isEmpty()) {
+            etUmur.setError("Umur anda harus diisi");
+            valid = false;
+        } else {
+            etUmur.setError(null);
+        }
+        return valid;
     }
 }
